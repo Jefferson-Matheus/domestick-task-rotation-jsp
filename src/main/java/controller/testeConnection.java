@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.DomestickTaskDao;
+import model.Domesticktask;
 import model.Responsible;
 import model.ResponsibleDao;
 
@@ -33,11 +35,23 @@ public class testeConnection extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		ResponsibleDao respsosibleDao = new ResponsibleDao();
+		DomestickTaskDao domestickTaskDao = new DomestickTaskDao();
 		
 		List<Responsible> responsibles	= respsosibleDao.getAllResponsilbes();
-		
+		List<Domesticktask> domestickTasks = domestickTaskDao.getAllDomestickTasks();
 		for(Responsible responsible : responsibles) {
 			System.out.println(responsible.getName());
+		}
+		System.out.println("##################################");
+		
+		System.out.println("Tarefas domesticas");
+		for(Domesticktask domestickTask : domestickTasks) {
+			System.out.println("##################################");
+	
+			System.out.println(domestickTask.getName());
+			System.out.println(domestickTask.getInstructions());
+			System.out.println(domestickTask.getResponsible().getName());
+			System.out.println("##################################");
 		}
 	}
 
