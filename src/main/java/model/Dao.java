@@ -24,7 +24,6 @@ public class Dao {
 		Connection connection = null;
 		connect();
 		connection = DriverManager.getConnection(urlConnection, databaseUser, databaseUserPassword);
-		System.out.println(connection);
 		return connection;
 	}
 }
