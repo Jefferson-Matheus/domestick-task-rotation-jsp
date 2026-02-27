@@ -12,17 +12,7 @@ public class DomestickTaskDao {
 	
 	public List<Domesticktask> getAllDomestickTasks(){
 		
-		String sqlQuery = "SELECT \n"
-				+ "dmt.id,\n"
-				+ "dmt.name,\n"
-				+ "dmt.instructions,\n"
-				+ "dmt.start_date_task,\n"
-				+ "dmt.end_date_task,\n"
-				+ "dmt.status_task,\n"
-				+ "r.name\n"
-				+ "FROM tb_dosmetick_task dmt\n"
-				+ "JOIN tb_responsibles r on\n"
-				+ "dmt.id_responsible = r.id";
+		String sqlQuery = "SELECT dmt.id, dmt.name, dmt.instructions, dmt.start_date_task, dmt.end_date_task, s.status, r.name FROM tb_dosmetick_task dmt JOIN tb_responsibles r ON dmt.id_responsible = r.id JOIN tb_status_task s ON dmt.status_task = s.id;";
 		
 		List<Domesticktask> domestickTasks = new ArrayList<Domesticktask>();
 		
@@ -38,7 +28,9 @@ public class DomestickTaskDao {
 				domestickTask.setInstructions(resultSet.getString(3));
 				domestickTask.setStart_date_task(resultSet.getDate(4));
 				domestickTask.setEnd_date_task(resultSet.getDate(5));
-				domestickTask.setStatus_task(resultSet.getString(6));
+				
+				String status_task = resultSet.getString(6);
+				domestickTask.setStatus_task(StatusDomestickTask.getStatusTaskFromDescription(status_task));
 				
 				Responsible responsible = new Responsible();
 				responsible.setName(resultSet.getString(7));
