@@ -12,7 +12,7 @@ public class Domesticktask implements Serializable{
     private String instructions;
     private Date start_date_task;
     private Date end_date_task;
-    private String status_task;
+    private StatusDomestickTask status_task;
     private Responsible responsible;
     
     
@@ -22,7 +22,7 @@ public class Domesticktask implements Serializable{
 	
 	
 	public Domesticktask(Long id, String name, String instructions, Date start_date_task, Date end_date_task,
-			String status_task, Responsible responsible) {
+			StatusDomestickTask status_task, Responsible responsible) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -64,10 +64,10 @@ public class Domesticktask implements Serializable{
 	public void setEnd_date_task(Date end_date_task) {
 		this.end_date_task = end_date_task;
 	}
-	public String getStatus_task() {
+	public StatusDomestickTask getStatus_task() {
 		return status_task;
 	}
-	public void setStatus_task(String status_task) {
+	public void setStatus_task(StatusDomestickTask status_task) {
 		this.status_task = status_task;
 	}
 	public Responsible getResponsible() {
